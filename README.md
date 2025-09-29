@@ -1,46 +1,47 @@
 
+
 # MyOwnLibrary
 
-MyOwnLibrary ist eine einfache Flask-Webanwendung zur Verwaltung einer persönlichen Bibliothek. Sie ermöglicht das Hinzufügen, Anzeigen, Suchen, Sortieren und Löschen von Büchern und Autoren.
+MyOwnLibrary is a simple Flask web application for managing a personal library. It allows you to add, view, search, sort, and delete books and authors.
 
 ## Features
-- Bücher und Autoren hinzufügen
-- Bücher nach Titel, Jahr oder Autor sortieren
-- Suche nach Büchern (auch mit Substrings)
-- Bücher löschen mit Bestätigung und Erfolgsmeldung
-- SQLite-Datenbank mit SQLAlchemy
-- Übersichtliche Weboberfläche
+- Add books and authors
+- Sort books by title, year, or author
+- Search for books (including substrings)
+- Delete books with confirmation and success message
+- SQLite database using SQLAlchemy
+- User-friendly web interface
 
 ## Installation
-1. Repository klonen:
+1. Clone the repository:
 	```bash
 	git clone https://github.com/BabelShallBurn/MyOwnLibrary.git
 	cd MyOwnLibrary
 	```
-2. Python-Umgebung erstellen und aktivieren:
+2. Create and activate a Python virtual environment:
 	```bash
 	python3 -m venv .venv
 	source .venv/bin/activate
 	```
-3. Abhängigkeiten installieren:
+3. Install dependencies:
 	```bash
 	pip install flask flask_sqlalchemy
 	```
 
-## Nutzung
-1. Starte die Anwendung:
+## Usage
+1. Start the application:
 	```bash
 	python app.py
 	```
-2. Öffne im Browser: [http://localhost:5001/home](http://localhost:5001/home)
+2. Open in your browser: [http://localhost:5001/home](http://localhost:5001/home)
 
-## Projektstruktur
+## Project Structure
 ```
-app.py                # Hauptanwendung
-README.md             # Diese Anleitung
-requirements.txt      # (optional) Python-Abhängigkeiten
-/data/library.sqlite  # SQLite-Datenbank
-/templates/           # HTML-Templates
-data_models.py        # Datenbankmodelle
+app.py                # Main application
+README.md             # This guide
+requirements.txt      # (optional) Python dependencies
+/data/library.sqlite  # SQLite database
+/templates/           # HTML templates
+data_models.py        # Database models
 ```
 
