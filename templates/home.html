@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>MyOwnLibrary</title>
+</head>
+
+<body>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  <ul style="list-style:none; padding:0;">
+    {% for category, message in messages %}
+    <li style="color: {% if category == 'success' %}green{% else %}red{% endif %}; font-weight: bold;">{{ message }}
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  {% endwith %}
+
+  <h1>MyOwnLibrary</h1>
+
+  <form method="GET" action="/home" style="margin-bottom: 20px;">
+    <label for="search">Suche nach Buchtitel:</label>
+    <input type="text" id="search" name="search" placeholder="Titel...">
+    <button type="submit">Suchen</button>
+    <label for="sortSelect" style="margin-left: 20px;">Sortieren nach:</label>
+    <select id="sortSelect" name="sort">
+      <option value="year">Sortiere nach Jahr</option>
+      <option value="author">Sortiere nach Author</option>
+      <option value="title">Sortiere nach Titel</option>
+    </select>
+    <button type="submit">Sortieren</button>
+  </form>
+
+  {% if books_with_authors|length == 0 %}
+  <p style="color: red; font-weight: bold;">Buch nicht gefunden.</p>
+  {% else %}
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Titel</th>
+        <th>Jahr</th>
+        <th>Autor</th>
+        <th>ISBN</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for book, author in books_with_authors %}
+      <tr>
+        <td>{{ book.title }}</td>
+        <td>{{ book.publication_year }}</td>
+        <td>{{ author.name }}</td>
+        <td>{{ book.isbn }}</td>
+        <td>
+          <form action="/book/{{ book.id }}/delete" method="POST" style="display:inline;">
+            <button type="submit">Eintrag löschen</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+  <br><br>
+
+  <form action="/home" method="GET">
+    <label for="sortSelect">Sortieren nach:</label>
+    <select id="sortSelect" name="sort">
+      <option value="year">Sortiere nach Jahr</option>
+      <option value="author">Sortiere nach Author</option>
+      <option value="title">Sortiere nach Titel</option>
+    </select>
+    <button type="submit">Sortieren</button>
+  </form>
+
+  <div style="display: flex; gap: 10px; margin-top: 20px;">
+    <form action="/add_author">
+      <input type="submit" value="Add Author">
+    </form>
+    <form action="/add_book">
+      <input type="submit" value="Add Book">
+    </form>
+  </div>
+
+</body>
+
+</html>
