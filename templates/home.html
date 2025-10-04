@@ -22,7 +22,7 @@
 
   <h1>MyOwnLibrary</h1>
 
-  <form method="GET" action="/home" style="margin-bottom: 20px;">
+  <form method="GET" action="/" style="margin-bottom: 20px;">
     <label for="search">Suche nach Buchtitel:</label>
     <input type="text" id="search" name="search" placeholder="Titel...">
     <button type="submit">Suchen</button>
@@ -65,16 +65,6 @@
   </table>
   {% endif %}
   <br><br>
-
-  <form action="/home" method="GET">
-    <label for="sortSelect">Sortieren nach:</label>
-    <select id="sortSelect" name="sort">
-      <option value="year">Sortiere nach Jahr</option>
-      <option value="author">Sortiere nach Author</option>
-      <option value="title">Sortiere nach Titel</option>
-    </select>
-    <button type="submit">Sortieren</button>
-  </form>
 
   <div style="display: flex; gap: 10px; margin-top: 20px;">
     <form action="/add_author">

@@ -4,6 +4,7 @@ from flask import render_template
 from flask_sqlalchemy import SQLAlchemy
 from data_models import db, Author, Book
 from datetime import datetime
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 """
@@ -11,7 +12,8 @@ Flask application for managing a personal library.
 Provides routes for adding authors, adding books, viewing the library, and deleting books.
 Uses SQLite as the database backend via SQLAlchemy.
 """
-app.secret_key = "my_super_secret_key_123456789!"
+load_dotenv()
+app.secret_key = os.getenv('SECRET_KEY')
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{os.path.join(basedir, 'data/library.sqlite')}"
@@ -30,9 +32,9 @@ def add_author():
     Redirects to the homepage after successful addition.
     """
     if request.method == 'POST':
-        name = request.form['name']
-        birth_date = request.form['birthdate']
-        date_of_death = request.form['date_of_death']
+        name = request.form.get('name')
+        birth_date = request.form.get('birthdate')
+        date_of_death = request.form.get('date_of_death')
 
         birth_date = datetime.strptime(birth_date, "%Y-%m-%d").date() if birth_date else None
         date_of_death = datetime.strptime(date_of_death, "%Y-%m-%d").date() if date_of_death else None
@@ -55,10 +57,10 @@ def add_book():
     """
     authors = Author.query.all()
     if request.method == 'POST':
-        title = request.form['title']
-        author_id = request.form['author_id']
-        publication_year = request.form['publication_year']
-        isbn = request.form['isbn']
+        title = request.form.get('title')
+        author_id = request.form.get('author_id')
+        publication_year = request.form.get('publication_year')
+        isbn = request.form.get('isbn')
 
         publication_year = int(publication_year) if publication_year else None
         author_id = int(author_id) if author_id else None
@@ -71,7 +73,7 @@ def add_book():
     return render_template('add_book.html', authors=authors)
 
 
-@app.route('/home')
+@app.route('/')
 def home():
     """
     Homepage route displaying all books and authors.
