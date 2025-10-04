@@ -23,9 +23,9 @@ MyOwnLibrary is a simple Flask web application for managing a personal library. 
 	python3 -m venv .venv
 	source .venv/bin/activate
 	```
-3. Install dependencies:
+3. Install dependencies using requirements.txt:
 	```bash
-	pip install flask flask_sqlalchemy
+	pip install -r requirements.txt
 	```
 
 ## Usage
