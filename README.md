@@ -33,7 +33,7 @@ MyOwnLibrary is a simple Flask web application for managing a personal library. 
 	```bash
 	python app.py
 	```
-2. Open in your browser: [http://localhost:5001/home](http://localhost:5001/home)
+2. Open in your browser: [http://localhost:5002/home](http://localhost:5002/home)
 
 ## Project Structure
 ```
